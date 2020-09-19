@@ -109,6 +109,7 @@ public class DetailCustomer extends AppCompatActivity {
     }
 
     public void editCust(String id, String nama, String telp){
+        btnSave.setEnabled(false);
         progressDialog = new ProgressDialog(DetailCustomer.this);
         progressDialog.setMessage("Loading...");
         progressDialog.setTitle("Update Data");
@@ -127,7 +128,7 @@ public class DetailCustomer extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        btnSave.setEnabled(false);
+
                         try {
 
 
@@ -154,7 +155,9 @@ public class DetailCustomer extends AppCompatActivity {
                                         })
                                         .show();
                             }
+                            btnSave.setEnabled(true);
                         } catch (JSONException e) {
+                            btnSave.setEnabled(true);
                             progressDialog.dismiss();
                             e.printStackTrace();
                         }
@@ -163,6 +166,7 @@ public class DetailCustomer extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        btnSave.setEnabled(true);
                         Toast.makeText( DetailCustomer.this, "Koneksi bermasalah", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -172,13 +176,14 @@ public class DetailCustomer extends AppCompatActivity {
     }
 
     public void deleteCust(String id){
+        btnDelete.setEnabled(false);
         progressDialog = new ProgressDialog(DetailCustomer.this);
         progressDialog.setMessage("Loading...");
         progressDialog.setTitle("Delete Data");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
         progressDialog.setCancelable(false);
-        btnSave.setEnabled(false);
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.getCache().clear();
         String urlCustomer = "https://project-base-team3.000webhostapp.com/api/customer_delete.php?id="+id;
@@ -190,7 +195,7 @@ public class DetailCustomer extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        btnSave.setEnabled(true);
+
                         try {
 
 
@@ -217,7 +222,9 @@ public class DetailCustomer extends AppCompatActivity {
                                         })
                                         .show();
                             }
+                            btnDelete.setEnabled(true);
                         } catch (JSONException e) {
+                            btnDelete.setEnabled(true);
                             progressDialog.dismiss();
                             e.printStackTrace();
                         }
@@ -226,6 +233,7 @@ public class DetailCustomer extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        btnDelete.setEnabled(true);
                         Toast.makeText( DetailCustomer.this, "Koneksi bermasalah", Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -57,6 +57,7 @@ public class AddCustomer extends AppCompatActivity {
     }
 
     public void addCust(String id, String nama, String telp){
+        btnSave.setEnabled(false);
         progressDialog = new ProgressDialog(AddCustomer.this);
         progressDialog.setMessage("Loading...");
         progressDialog.setTitle("Menambah Data");
@@ -75,7 +76,7 @@ public class AddCustomer extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        btnSave.setEnabled(false);
+
                         try {
 
 
@@ -102,7 +103,9 @@ public class AddCustomer extends AppCompatActivity {
                                         })
                                         .show();
                             }
+                            btnSave.setEnabled(true);
                         } catch (JSONException e) {
+                            btnSave.setEnabled(true);
                             progressDialog.dismiss();
                             e.printStackTrace();
                         }
@@ -111,6 +114,7 @@ public class AddCustomer extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        btnSave.setEnabled(true);
                         Toast.makeText( AddCustomer.this, "Koneksi bermasalah", Toast.LENGTH_SHORT).show();
                     }
                 }
