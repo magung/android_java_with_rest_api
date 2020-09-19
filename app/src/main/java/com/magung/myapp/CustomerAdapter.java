@@ -1,10 +1,12 @@
 package com.magung.myapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +36,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.GridVi
         holder.tvName.setText(" : " + nama);
         holder.tvTelp.setText(" : " + telp);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, nama, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(context, DetailCustomer.class);
+                i.putExtra("i_id", id);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
 
     }
 

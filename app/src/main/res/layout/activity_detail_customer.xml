@@ -20,6 +20,7 @@
             android:id="@+id/et_id_cust"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             />
 
         <TextView
