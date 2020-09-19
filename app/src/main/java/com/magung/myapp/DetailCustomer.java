@@ -178,7 +178,7 @@ public class DetailCustomer extends AppCompatActivity {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
         progressDialog.setCancelable(false);
-
+        btnSave.setEnabled(false);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.getCache().clear();
         String urlCustomer = "https://project-base-team3.000webhostapp.com/api/customer_delete.php?id="+id;
@@ -190,7 +190,7 @@ public class DetailCustomer extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        btnSave.setEnabled(false);
+                        btnSave.setEnabled(true);
                         try {
 
 
